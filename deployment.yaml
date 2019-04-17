@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test-cosmos
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: test-cosmos
+    spec:
+      containers:
+      - name: test-cosmos
+        image: rioriost/test-cosmos
+        env:
+        - name: COSMOS_URI
+          value: "https://riotestcosmosdbcore.documents.azure.com:443"
+        - name: COSMOS_KEY
+          value: "U5em9XaREn9PreSbnDfHKW7x0dZPwhrSq3g435ptQVhqDEWa3VJOkjNIhXoBYkEzmXR8QV4sRl2INXish25KBw=="
+        - name: DB_ID
+          value: "salmonrun"
+        - name: COL_ID
+          value: "jobs"
