@@ -1,6 +1,12 @@
 FROM rioriost/php-cosmos-core
 
-COPY --chown=root:staff test-cosmos.php /usr/local/bin/
-RUN chmod 755 /usr/local/bin/test-cosmos.php
+WORKDIR /usr/local/bin
 
-ENTRYPOINT ["test-cosmos.php"]
+COPY composer.json ./
+
+RUN composer install --no-plugins --no-scripts
+
+COPY --chown=root:staff test-cosmos ./
+RUN chmod 755 ./test-cosmos
+
+ENTRYPOINT ["test-cosmos"]
