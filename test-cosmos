@@ -30,9 +30,6 @@ if($argc >= 2){
 	}
 }
 
-echo("### opts ###\n");
-var_dump($opts);
-
 $uri = $opts["COSMOS_URI"];
 if($uri === ""){
 	usage("CosmosDB URI is needed.");
