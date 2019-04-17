@@ -8,7 +8,7 @@ require __DIR__ .'/vendor/autoload.php';
 function usage($message){
 	echo($message . "\n\n");
 	echo <<< EOL
-docker run -i -t rioriost/test-cosmos --env COSMOS_URI=https://REPLACEHERE.documents.azure.com:443 --env COSMOS_KEY="PrimaryOrSecondaryKey==" --env DB_ID="test_db" --env COL_ID="test_collection"
+docker run -i -t rioriost/test-cosmos -e COSMOS_URI="https://REPLACEHERE.documents.azure.com:443", COSMOS_KEY="PrimaryOrSecondaryKey==", DB_ID="test_db", COL_ID="test_collection"
 You can find URI, PRIMARY KEY or SECONDARY KEY on [Keys] pane of Cosmos DB [Menu] on Azure Portal.
 EOL;
 	exit();
