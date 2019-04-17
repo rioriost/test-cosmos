@@ -14,10 +14,24 @@ EOL;
 	exit();
 }
 
-foreach($argv as $arg){
-	list($k, $v) = explode("=", $arg);
-	$opts[$k] = $v;
+$opts = array();
+#running on docker
+if($argc >= 2){
+	foreach($argv as $a){
+		@list($k, $v) = explode("=", $a);
+		if($k != "" && $v != ""){
+			$opts[$k] = rtrim($v, ",");
+		}
+	}
+#may be on ACI
+} else {
+	foreach($_ENV as $k=>$v){
+		$opts[$k] = rtrim($v, ",");
+	}
 }
+
+echo("### opts ###\n");
+var_dump($opts);
 
 $uri = $opts["COSMOS_URI"];
 if($uri === ""){
